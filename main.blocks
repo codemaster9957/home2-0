@@ -1,0 +1,18 @@
+<xml xmlns="https://developers.google.com/blockly/xml"><variables><variable type="KIND_SpriteKind" id="h@(PnPkIk-9y57_akoS]">Player</variable><variable type="KIND_SpriteKind" id="M8hGuB6MtnHq;hKiSk2#">Projectile</variable><variable type="KIND_SpriteKind" id="ZtOL^A-tfa*wpBrPK@8m">Food</variable><variable type="KIND_SpriteKind" id="8{9Z6o1[9c]7Sql`P6yI">Enemy</variable><variable id="H`tE-N9yz3?@(-;%5pu^">mySprite</variable><variable id="=aSigr0o7JCo{)v}I#ju">item</variable></variables><block type="pxt-on-start" id="Ix$k(`fKb#TrZzKFPsCC" x="0" y="0"><statement name="HANDLER"><block type="variables_set" id="i`3Ysad:]NSLCs1z_c[h"><field name="VAR" id="H`tE-N9yz3?@(-;%5pu^">mySprite</field><value name="VALUE"><shadow xmlns="http://www.w3.org/1999/xhtml" type="math_number"><field name="NUM">0</field></shadow><block type="spritescreate" id="u!1M-Q5q+d#f,/zaZDgQ"><value name="img"><shadow type="screen_image_picker" id="uB:_44]bZ.D0+?:D@b=."><field name="img">img`
+. . . . . . f f f f . . . . . . 
+. . . . f f f 2 2 f f f . . . . 
+. . . f f f 2 2 2 2 f f f . . . 
+. . f f f e e e e e e f f f . . 
+. . f f e 2 2 2 2 2 2 e e f . . 
+. . f e 2 f f f f f f 2 e f . . 
+. . f f f f e e e e f f f f . . 
+. f f e f b f 4 4 f b f e f f . 
+. f e e 4 1 f d d f 1 4 e e f . 
+. . f e e d d d d d d e e f . . 
+. . . f e e 4 4 4 4 e e f . . . 
+. . e 4 f 2 2 2 2 2 2 f 4 e . . 
+. . 4 d f 2 2 2 2 2 2 f d 4 . . 
+. . 4 4 f 4 4 5 5 4 4 f 4 4 . . 
+. . . . . f f f f f f . . . . . 
+. . . . . f f . . f f . . . . . 
+`</field><data>{"commentRefs":[],"fieldData":{"img":"uB:_44]bZ.D0+?:D@b=."}}</data></shadow></value><value name="kind"><shadow type="spritekind" id=";rw#vy,lX`@O}5.T_(Q_"><field name="MEMBER">Player</field></shadow></value></block></value><next><block type="game_control_sprite" id="H/Dc5$yYs^YO27RiQ[I)"><mutation xmlns="http://www.w3.org/1999/xhtml" _expanded="0" _input_init="false"></mutation><value name="sprite"><block type="variables_get" id="J![:vU7i{ebkwHl8PFhr"><field name="VAR" id="H`tE-N9yz3?@(-;%5pu^">mySprite</field></block></value><next><block type="camerafollow" id="qRH5Y_`V2w-i6;s:ZABr"><value name="sprite"><block type="variables_get" id="5f{$PPgapbr*C5}Hh9#:"><field name="VAR" id="H`tE-N9yz3?@(-;%5pu^">mySprite</field></block></value><next><block type="set_current_tilemap" id=".Js4VTicXE$s@wz}x)Ev"><value name="tilemap"><shadow type="tiles_tilemap_editor" id="*WYr-UM%lB:fwsN*%.q)"><field name="tilemap">tilemap`level1`</field><data>{"commentRefs":[],"fieldData":{"tilemap":"level1"}}</data></shadow></value></block></next></block></next></block></next></block></statement></block><block type="keyonevent" id="xS9///?zN(_9Tgd]o^`a" x="270" y="310"><field name="button">controller.left</field><field name="event">ControllerButtonEvent.Pressed</field></block><block type="keyonevent" id="(#TwDi/zQH-S$RZp(WfF" x="550" y="310"><field name="button">controller.up</field><field name="event">ControllerButtonEvent.Pressed</field></block><block type="keyonevent" id="1Wm6JYNS_8k]6y8^7~Rj" x="270" y="430"><field name="button">controller.right</field><field name="event">ControllerButtonEvent.Pressed</field></block><block type="keyonevent" id="I``y8nHV8-/v8Z(E^{Pf" x="550" y="430"><field name="button">controller.down</field><field name="event">ControllerButtonEvent.Pressed</field></block></xml>
