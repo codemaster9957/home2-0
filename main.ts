@@ -302,6 +302,9 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     true
     )
 })
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile5`, function (sprite, location) {
+    tiles.loadMap(tiles.createMap(tilemap`level3`))
+})
 let mySprite: Sprite = null
 mySprite = sprites.create(img`
     . . . . . . f f f f . . . . . . 
