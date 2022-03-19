@@ -150,6 +150,10 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     true
     )
 })
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile20`, function (sprite, location) {
+    tiles.loadMap(tiles.createMap(tilemap`level4`))
+    tiles.placeOnTile(mySprite, tiles.getTileLocation(3, 4))
+})
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
     mySprite,
@@ -304,6 +308,11 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile5`, function (sprite, location) {
     tiles.loadMap(tiles.createMap(tilemap`level3`))
+    tiles.placeOnTile(mySprite, tiles.getTileLocation(4, 8))
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile28`, function (sprite, location) {
+    tiles.loadMap(tiles.createMap(tilemap`level4`))
+    tiles.placeOnTile(mySprite, tiles.getTileLocation(3, 4))
 })
 let mySprite: Sprite = null
 mySprite = sprites.create(img`
