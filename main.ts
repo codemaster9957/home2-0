@@ -74,6 +74,10 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     true
     )
 })
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairLadder, function (sprite, location) {
+    tiles.loadMap(tiles.createMap(tilemap`level7`))
+    tiles.placeOnTile(mySprite, tiles.getTileLocation(8, 0))
+})
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
     mySprite,
@@ -149,6 +153,10 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     500,
     true
     )
+})
+info.onCountdownEnd(function () {
+    tiles.loadMap(tiles.createMap(tilemap`level9`))
+    tiles.placeOnTile(mySprite, tiles.getTileLocation(4, 2))
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile20`, function (sprite, location) {
     tiles.loadMap(tiles.createMap(tilemap`level4`))
@@ -310,11 +318,25 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile5`, function (sprite, l
     tiles.loadMap(tiles.createMap(tilemap`level3`))
     tiles.placeOnTile(mySprite, tiles.getTileLocation(4, 8))
 })
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairLarge, function (sprite, location) {
+    if (controller.A.isPressed()) {
+        tiles.loadMap(tiles.createMap(tilemap`level6`))
+        tiles.placeOnTile(mySprite, tiles.getTileLocation(3, 5))
+    }
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile35`, function (sprite, location) {
+    if (controller.A.isPressed()) {
+        tiles.loadMap(tiles.createMap(tilemap`level8`))
+        info.startCountdown(3)
+        tiles.placeOnTile(mySprite, tiles.getTileLocation(56, 59))
+    }
+})
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile28`, function (sprite, location) {
     tiles.loadMap(tiles.createMap(tilemap`level4`))
     tiles.placeOnTile(mySprite, tiles.getTileLocation(3, 4))
 })
 let mySprite: Sprite = null
+let statusbar = statusbars.create(20, 4, StatusBarKind.Health)
 mySprite = sprites.create(img`
     . . . . . . f f f f . . . . . . 
     . . . . f f f 2 2 f f f . . . . 
@@ -333,6 +355,8 @@ mySprite = sprites.create(img`
     . . . . . f f f f f f . . . . . 
     . . . . . f f . . f f . . . . . 
     `, SpriteKind.Player)
+statusbar.attachToSprite(mySprite)
+statusbar.setBarBorder(1, 15)
 controller.moveSprite(mySprite)
 scene.cameraFollowSprite(mySprite)
 tiles.setCurrentTilemap(tilemap`level1`)
