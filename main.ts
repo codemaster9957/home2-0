@@ -78,6 +78,11 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairLadder, function (sp
     tiles.loadMap(tiles.createMap(tilemap`level7`))
     tiles.placeOnTile(mySprite, tiles.getTileLocation(8, 0))
 })
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile22`, function (sprite, location) {
+    if (controller.A.isPressed()) {
+        game.showLongText("THE NEWS SHOW LATEST UPDATES :YOU ARE WATCHING TV", DialogLayout.Bottom)
+    }
+})
 controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
     mySprite,
@@ -157,6 +162,9 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
 info.onCountdownEnd(function () {
     tiles.loadMap(tiles.createMap(tilemap`level9`))
     tiles.placeOnTile(mySprite, tiles.getTileLocation(4, 2))
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile54`, function (sprite, location) {
+    tiles.loadMap(tiles.createMap(tilemap`level10`))
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile20`, function (sprite, location) {
     tiles.loadMap(tiles.createMap(tilemap`level4`))
