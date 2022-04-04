@@ -77,6 +77,7 @@ controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     500,
     true
     )
+    mySprite9 = 0
 })
 controller.combos.attachCombo("B+U", function () {
     if (mySprite6 == 10) {
@@ -151,7 +152,7 @@ controller.combos.attachCombo("B+U", function () {
             . f 4 e e f f f f f f e . . . . 
             . . . . . . . . f f f . . . . . 
             `],
-        500,
+        100,
         false
         )
         music.bigCrash.play()
@@ -198,6 +199,14 @@ scene.onOverlapTile(SpriteKind.boat, assets.tile`myTile69`, function (sprite, lo
             .f9f9f.....f9ff9f.....f9f9f...
             `, SpriteKind.boss)
         tiles.placeOnTile(mySprite5, tiles.getTileLocation(0, 0))
+    }
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile86`, function (sprite, location) {
+    tiles.loadMap(tiles.createMap(tilemap`level19`))
+    if (game.askForString("choose your team dark or light (D/L)") == "light") {
+        tiles.loadMap(tiles.createMap(tilemap`level20`))
+    } else {
+        tiles.loadMap(tiles.createMap(tilemap`level21`))
     }
 })
 controller.combos.attachCombo("A+L", function () {
@@ -333,6 +342,7 @@ controller.combos.attachCombo("A+L", function () {
         100,
         false
         )
+        mySprite9 = 1
         music.smallCrash.playUntilDone()
     }
 })
@@ -657,6 +667,7 @@ controller.left.onEvent(ControllerButtonEvent.Pressed, function () {
     500,
     true
     )
+    mySprite9 = 0
 })
 scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.stairWest, function (sprite, location) {
     tiles.loadMap(tiles.createMap(tilemap`level12`))
@@ -805,6 +816,7 @@ controller.combos.attachCombo("A+U", function () {
         100,
         false
         )
+        mySprite9 = 1
         music.smallCrash.playUntilDone()
     }
 })
@@ -974,6 +986,7 @@ controller.combos.attachCombo("A+R", function () {
         100,
         false
         )
+        mySprite9 = 1
         music.smallCrash.playUntilDone()
     }
 })
@@ -983,6 +996,9 @@ scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.chestClosed, function (sp
         tiles.loadMap(tiles.createMap(tilemap`level14`))
         mySprite2 = 10
     }
+})
+statusbars.onZero(StatusBarKind.Health, function (status) {
+    game.over(false)
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile54`, function (sprite, location) {
     if (controller.A.isPressed()) {
@@ -1074,6 +1090,16 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     500,
     true
     )
+    mySprite9 = 0
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile84`, function (sprite, location) {
+    if (controller.A.isPressed()) {
+        mySprite7 = 0
+        tiles.loadMap(tiles.createMap(tilemap`level18`))
+        tiles.placeOnTile(mySprite, tiles.getTileLocation(2, 15))
+    }
+    sprites.destroyAllSpritesOfKind(SpriteKind.Enemy)
+    sprites.destroyAllSpritesOfKind(SpriteKind.boss)
 })
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     animation.runImageAnimation(
@@ -1150,10 +1176,17 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     500,
     true
     )
+    mySprite9 = 0
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile5`, function (sprite, location) {
     tiles.loadMap(tiles.createMap(tilemap`level3`))
     tiles.placeOnTile(mySprite, tiles.getTileLocation(4, 8))
+})
+scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile78`, function (sprite, location) {
+    game.splash("NOW YOU ARE READY IF YOU GOT SOME WEAPONS YOU WILL COME OUT VICTORIOUS IF NOT YOU WILL FAIL INSTANTLEY")
+    tiles.loadMap(tiles.createMap(tilemap`level17`))
+    tiles.placeOnTile(mySprite, tiles.getTileLocation(7, 8))
+    mySprite7 = 10
 })
 controller.combos.attachCombo("A+D", function () {
     if (mySprite2 >= 1) {
@@ -1288,6 +1321,7 @@ controller.combos.attachCombo("A+D", function () {
         100,
         false
         )
+        mySprite9 = 1
         music.smallCrash.playUntilDone()
     }
 })
@@ -1587,15 +1621,26 @@ scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile28`, function (sprite, 
     tiles.loadMap(tiles.createMap(tilemap`level4`))
     tiles.placeOnTile(mySprite, tiles.getTileLocation(3, 4))
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+    if (mySprite9 == 1) {
+        otherSprite.destroy()
+        info.changeScoreBy(1)
+    } else {
+        statusbar.value += -1
+    }
+})
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile70`, function (sprite, location) {
     tiles.loadMap(tiles.createMap(tilemap`level16`))
     game.splash("you got a shield!")
     mySprite6 = 10
 })
+let mySprite8: Sprite = null
+let mySprite7 = 0
 let mySprite2 = 0
 let mySprite5: Sprite = null
 let mySprite3: Sprite = null
 let mySprite6 = 0
+let mySprite9 = 0
 let mySprite: Sprite = null
 let statusbar: StatusBarSprite = null
 statusbar = statusbars.create(20, 4, StatusBarKind.Health)
@@ -1622,3 +1667,26 @@ statusbar.setBarBorder(1, 15)
 controller.moveSprite(mySprite)
 scene.cameraFollowSprite(mySprite)
 tiles.setCurrentTilemap(tilemap`level1`)
+game.onUpdateInterval(2000, function () {
+    if (mySprite7 == 10) {
+        mySprite8 = sprites.create(img`
+            . . . . c c c c c c . . . . . . 
+            . . . c 6 7 7 7 7 6 c . . . . . 
+            . . c 7 7 7 7 7 7 7 7 c . . . . 
+            . c 6 7 7 7 7 7 7 7 7 6 c . . . 
+            . c 7 c 6 6 6 6 c 7 7 7 c . . . 
+            . f 7 6 f 6 6 f 6 7 7 7 f . . . 
+            . f 7 7 7 7 7 7 7 7 7 7 f . . . 
+            . . f 7 7 7 7 6 c 7 7 6 f c . . 
+            . . . f c c c c 7 7 6 f 7 7 c . 
+            . . c 7 2 7 7 7 6 c f 7 7 7 7 c 
+            . c 7 7 2 7 7 c f c 6 7 7 6 c c 
+            c 1 1 1 1 7 6 f c c 6 6 6 c . . 
+            f 1 1 1 1 1 6 6 c 6 6 6 6 f . . 
+            f 6 1 1 1 1 1 6 6 6 6 6 c f . . 
+            . f 6 1 1 1 1 1 1 6 6 6 f . . . 
+            . . c c c c c c c c c f . . . . 
+            `, SpriteKind.Enemy)
+        mySprite8.follow(mySprite, 80)
+    }
+})
