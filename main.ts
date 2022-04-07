@@ -203,7 +203,7 @@ scene.onOverlapTile(SpriteKind.boat, assets.tile`myTile69`, function (sprite, lo
 })
 scene.onOverlapTile(SpriteKind.Player, assets.tile`myTile86`, function (sprite, location) {
     tiles.loadMap(tiles.createMap(tilemap`level19`))
-    if (game.askForString("choose your team dark or light (D/L)") == "light") {
+    if (game.askForString("choose your team dark or light no capitals") == "light") {
         tiles.loadMap(tiles.createMap(tilemap`level20`))
     } else {
         tiles.loadMap(tiles.createMap(tilemap`level21`))
@@ -1665,8 +1665,9 @@ mySprite = sprites.create(img`
 statusbar.attachToSprite(mySprite)
 statusbar.setBarBorder(1, 15)
 controller.moveSprite(mySprite)
-scene.cameraFollowSprite(mySprite)
 tiles.setCurrentTilemap(tilemap`level1`)
+tiles.placeOnTile(mySprite, tiles.getTileLocation(13, 3))
+scene.cameraFollowSprite(mySprite)
 game.onUpdateInterval(2000, function () {
     if (mySprite7 == 10) {
         mySprite8 = sprites.create(img`
